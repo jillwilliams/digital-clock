@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Digital and Analog Clocks</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=WindSong&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat&family=Creepster&family=Quintessential&family=Rye&family=UnifrakturMaguntia&family=Anton&family=Kranky&family=Nosifer&family=Noto+Sans+Rubic&family=Noto+Color+Emoji&family=Dancing+Script&family=Fuggles&family=Indie+Flower&family=Kalam&family=Montserrat:wght@100&family=Permanent+Marker&family=Poppins&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/9f71dab2a2.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" HREF="./styles.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="clock">
+            <div class="digital" style="--clr:#ff2972;">
+                <div class="screen" data-text="Hours">
+                    <div class="time">
+                        <div id="hour"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="digital" style="--clr:#fee800;">
+                <div class="screen" data-text="Minutes">
+                    <div class="time">
+                        <div id="minutes"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="digital" style="--clr:#04fc43;">
+                <div class="screen" data-text="Seconds">
+                    <div class="time">
+                        <div id="seconds"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="digital">
+                <div class="box" id="hr" style="--clr:#ff2972;">
+                </div>
+                
+                <div class="box" id="mn" style="--clr:#fee800;">
+                </div>
+                
+                <div class="box" id="sc" style="--clr:#04fc43;">
+                </div>
+                <div id="ampm"></div>
+            </div>
+        </div>
+        <script>
+            let hours = document.getElementById('hour');
+            let minute = document.getElementById('minutes');
+            let seconds = document.getElementById('seconds');
+            let ampm = document.getElementById('ampm');
+            
+            let hr = document.querySelector("#hr");
+            let mn = document.querySelector("#mn");
+            let sc = document.querySelector("#sc");
+
+            setInterval(() => {
+                let h = new Date().getHours();
+                let m = new Date().getMinutes();
+                let s = new Date().getSeconds();
+
+                var am = h >= 12 ? 'PM' : 'AM';
+
+                if (h > 12) {
+                    h = h -12;
+                }
+
+                h = (h < 10) ? "0" + h : h
+                m = (m < 10) ? "0" + m : m
+                s = (s < 10) ? "0" + s : s
+
+                hours.innerHTML = h;
+                minute.innerHTML = m;
+                seconds.innerHTML = s;
+                ampm.innerHTML = am;
+                hr.style.transform = `rotateZ(${h * 30}deg)`;
+                mn.style.transform = `rotateZ(${m * 6}deg)`;
+                sc.style.transform = `rotateZ(${s * 6}deg)`;
+            })
+        </script>
+    </body>
+</html>
